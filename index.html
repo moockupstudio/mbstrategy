@@ -27,18 +27,16 @@
     <style>
         /* --- 1. PALETTE "ORGANIC LUXURY" --- */
         :root {
-            --primary: #001a3d; /* Verdone Muschio */
-            --accent: #177aff; /* Verde Fluo */
-            
+            --primary: #001a3d; 
+            --accent: #177aff; 
             --dark: #1A1A1A;
             --light-bg: #F5F5F1;
             --white: #ffffff;
             --text-body: #555555;
-            
             --transition-smooth: cubic-bezier(0.77, 0, 0.175, 1);
         }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; width: 100%; overflow-x: hidden; }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -47,6 +45,8 @@
             color: var(--text-body);
             background-color: var(--white);
             line-height: 1.8;
+            width: 100%;
+            position: relative;
             overflow-x: hidden;
         }
 
@@ -66,6 +66,7 @@
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 30px;
+            width: 100%;
         }
 
         /* --- 2. ANIMAZIONE "REVEAL" --- */
@@ -135,10 +136,16 @@
         }
         .nav-links a:hover::after { width: 100%; }
         
-        /* Lingua */
         .lang-link { font-weight: 700 !important; color: var(--accent) !important; }
 
-        .mobile-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: var(--white); transition: 0.3s; }
+        .mobile-toggle { 
+            display: none; 
+            font-size: 1.8rem; 
+            cursor: pointer; 
+            color: var(--white); 
+            transition: 0.3s; 
+            z-index: 1001; 
+        }
 
         /* --- 4. HERO SECTION --- */
         .hero {
@@ -201,71 +208,64 @@
         .about-list li { display: flex; align-items: center; margin-bottom: 20px; font-weight: 600; color: var(--dark); }
         .about-list li i { color: var(--accent); margin-right: 15px; font-size: 1.2rem; }
 
-        /* --- 7. PORTFOLIO --- */
+        /* --- 7. PORTFOLIO (COMPETENZE / PROGETTI MANIFESTO) --- */
         .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px; }
         .portfolio-item:nth-child(odd) { height: 500px; margin-top: -50px; }
         .portfolio-item:nth-child(even) { height: 500px; }
-        .portfolio-item { position: relative; border-radius: 4px; cursor: pointer; }
-        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; }
+        .portfolio-item { position: relative; border-radius: 4px; overflow: hidden; }
+        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
+        /* Modifica per rendere le scritte fisse su ogni immagine (sia desktop che mobile) */
         .portfolio-info {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px;
-            background: linear-gradient(to top, var(--primary) 0%, transparent 100%);
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px;
+            background: linear-gradient(to top, rgba(0, 26, 61, 0.95) 0%, rgba(0, 26, 61, 0.7) 60%, transparent 100%);
             color: var(--white); z-index: 3;
-            opacity: 0; transform: translateY(20px); transition: 0.5s var(--transition-smooth);
+            opacity: 1; transform: translateY(0); transition: 0.3s ease;
         }
-        .portfolio-item:hover .portfolio-info { opacity: 1; transform: translateY(0); }
         .portfolio-info h3 { color: var(--white); font-size: 1.8rem; margin-bottom: 5px; }
-        .portfolio-info span { color: var(--accent); font-weight: 600; letter-spacing: 1px; text-transform: uppercase;}
+        .portfolio-info h4 { font-size: 1rem; line-height: 1.4; font-weight: 500; }
+        .portfolio-info span { color: var(--accent); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 8px; font-size: 0.85rem;}
 
         /* --- 8. FOOTER --- */
         footer { background: #001a3d; color: #ffffff; padding: 120px 0 40px; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 80px; margin-bottom: 80px; }
         footer .logo-img { filter: brightness(100) grayscale(1); margin-bottom: 25px; height: 50px; }
         .footer-col h4 { color: var(--white); margin-bottom: 30px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
-        .footer-contact li { display: flex; gap: 15px; margin-bottom: 20px; align-items: center;}
-        .footer-contact i { color: #177aff; font-size: 1.2rem; }
-        /* --- AGGIORNAMENTO COPYRIGHT E SOCIAL --- */
+        .footer-contact ul { display: flex; flex-direction: column; gap: 15px; }
+        .footer-contact li { display: flex; gap: 15px; align-items: flex-start; word-break: break-word; }
+        .footer-contact i { color: #177aff; font-size: 1.2rem; margin-top: 4px; flex-shrink: 0; }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
 
-.copyright {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 30px;
-    margin-top: 40px;
-    display: flex; /* Attiva la modalità riga */
-    justify-content: space-between; /* Testo a Sx, Icone a Dx */
-    align-items: center; /* Allinea verticalmente al centro */
-    font-size: 0.9rem;
-}
+        .footer-socials {
+            display: flex;
+            gap: 20px;
+        }
 
-.footer-socials {
-    display: flex;
-    gap: 20px; /* Spazio tra le icone */
-}
+        .footer-socials a {
+            color: #ffffff;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.footer-socials a {
-    color: #ffffff; /* Icone Bianche */
-    font-size: 1.2rem; /* Grandezza icone */
-    transition: 0.3s;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Effetto Hover (diventa color Bronzo/Accent) */
-.footer-socials a:hover {
-    color: var(--accent); 
-    transform: translateY(-3px);
-}
-
-/* --- AGGIORNAMENTO MEDIA QUERY MOBILE (Da inserire/controllare nella sezione @media max-width 768px) --- */
-@media (max-width: 768px) {
-    .copyright {
-        flex-direction: column-reverse; /* Su mobile icone sopra o sotto, come preferisci */
-        gap: 20px;
-        text-align: center;
-    }
-}
+        .footer-socials a:hover {
+            color: var(--accent); 
+            transform: translateY(-3px);
+        }
 
         /* --- 9. MODAL POPUP --- */
         .modal {
@@ -297,7 +297,8 @@
             .about-wrapper { grid-template-columns: 1fr; gap: 60px; }
             .about-img-wrap { height: 450px; }
             .portfolio-grid { grid-template-columns: 1fr; gap: 30px; }
-            .portfolio-item:nth-child(odd) { margin-top: 0; } 
+            .portfolio-item:nth-child(odd) { margin-top: 0; height: 400px; } 
+            .portfolio-item:nth-child(even) { height: 400px; }
             .footer-grid { grid-template-columns: 1fr; gap: 50px; }
         }
 
@@ -312,6 +313,7 @@
                 background: var(--primary); 
                 flex-direction: column; justify-content: center; align-items: center;
                 transition: 0.5s var(--transition-smooth); gap: 30px; padding-top: 60px;
+                z-index: 1000;
             }
             .nav-links.active { right: 0; }
             .nav-links a { font-size: 1.5rem; }
@@ -325,54 +327,50 @@
             .services-grid { grid-template-columns: 1fr; }
             .mobile-hidden { display: none; }
             
+            .portfolio-item:nth-child(odd), .portfolio-item:nth-child(even) { height: 350px; }
+            .portfolio-info { padding: 20px; }
+            .portfolio-info h4 { font-size: 0.9rem; }
+            
+            .copyright {
+                flex-direction: column-reverse;
+                gap: 20px;
+                text-align: center;
+            }
+
             .modal-image-container { height: 50vh; width: 100%; }
             .prev, .next { top: auto; bottom: -60px; transform: none; }
             .prev { left: 20px; } .next { right: 20px; }
         }
+
         /* --- CURSORE CUSTOM (Solo Desktop) --- */
-@media (min-width: 992px) {
-    
-    /* Nasconde il cursore di default */
-    * {
-        cursor: none !important; 
-    }
+        @media (min-width: 992px) {
+            * { cursor: none !important; }
 
-    .cursor-dot {
-        position: fixed;
-        top: 0; left: 0;
-        width: 8px; height: 8px;
-        background-color: var(--accent); /* Usa il color Oro/Khaki */
-        border-radius: 50%;
-        z-index: 9999;
-        pointer-events: none;
-        transform: translate(-50%, -50%);
-    }
+            .cursor-dot {
+                position: fixed; top: 0; left: 0;
+                width: 8px; height: 8px; background-color: var(--accent);
+                border-radius: 50%; z-index: 9999; pointer-events: none;
+                transform: translate(-50%, -50%);
+            }
 
-    .cursor-outline {
-        position: fixed;
-        top: 0; left: 0;
-        width: 40px; height: 40px;
-        border: 1px solid var(--primary); /* Usa il color Verdone */
-        border-radius: 50%;
-        z-index: 9998; /* Appena sotto il punto */
-        pointer-events: none;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s, height 0.2s, background-color 0.2s; /* Animazione fluida espansione */
-    }
+            .cursor-outline {
+                position: fixed; top: 0; left: 0;
+                width: 40px; height: 40px; border: 1px solid var(--primary);
+                border-radius: 50%; z-index: 9998; pointer-events: none;
+                transform: translate(-50%, -50%);
+                transition: width 0.2s, height 0.2s, background-color 0.2s;
+            }
 
-    /* Effetto quando passi sopra link o bottoni */
-    body.hovering .cursor-outline {
-        width: 70px;
-        height: 70px;
-        background-color: rgba(189, 183, 107, 0.1); /* darkkhaki trasparente */
-        border-color: var(--accent);
-    }
-}
+            body.hovering .cursor-outline {
+                width: 70px; height: 70px;
+                background-color: rgba(23, 122, 255, 0.1);
+                border-color: var(--accent);
+            }
+        }
 
-/* Nascondi i div del cursore su Mobile */
-@media (max-width: 991px) {
-    .cursor-dot, .cursor-outline { display: none; }
-}
+        @media (max-width: 991px) {
+            .cursor-dot, .cursor-outline { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -397,8 +395,9 @@
                 
                 <a href="#contatti" class="btn btn-primary mobile-hidden" style="padding: 12px 30px; font-size: 0.85rem;">Contattaci</a>
 
+                <!-- Icona del menu con supporto per il cambio in X bianca -->
                 <div class="mobile-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-bars" id="toggleIcon" style="color: inherit;"></i>
                 </div>
             </nav>
         </div>
@@ -473,7 +472,6 @@
                     </div>
                     <h3>Welfare & Inclusione Sociale</h3>
                     <p>Iniziative per l'accessibilità, il sostegno alla disabilità e la tutela dei diritti dei cittadini.</p>
-                    
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-img-wrap reveal-holder" data-aos="reveal-trigger">
@@ -481,7 +479,6 @@
                     </div>
                     <h3>Sport & Management</h3>
                     <p>Promozione e valorizzazione sportiva giovanile e sviluppo infrastrutturale.</p>
-                    
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="service-img-wrap reveal-holder" data-aos="reveal-trigger">
@@ -489,31 +486,27 @@
                     </div>
                     <h3>Lavoro & Sicurezza</h3>
                     <p>Advisor e governance per la compliance aziendale e la sicurezza nei luoghi di lavoro.</p>
-                    
                 </div>
-                                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="service-img-wrap reveal-holder" data-aos="reveal-trigger">
                         <img src="https://images.pexels.com/photos/27075286/pexels-photo-27075286.jpeg" alt="Casa & Territorio">
                     </div>
                     <h3>Casa & Territorio</h3>
                     <p>Governance cooperativa e politiche abitative per costruire comunità di cittadini.</p>
-                    
                 </div>
-                                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="service-img-wrap reveal-holder" data-aos="reveal-trigger">
                         <img src="https://images.pexels.com/photos/461049/pexels-photo-461049.jpeg" alt="Terzo Settore">
                     </div>
                     <h3>Terzo Settore</h3>
                     <p>Co-progettazione sociale e direzione strategica per lo sviluppo territoriale.</p>
-                    
                 </div>
-                                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="service-img-wrap reveal-holder" data-aos="reveal-trigger">
                         <img src="https://images.pexels.com/photos/7698719/pexels-photo-7698719.jpeg" alt="Formazione & Comunicazione">
                     </div>
                     <h3>Formazione & Comunicazione</h3>
                     <p>Percorsi di sviluppo personale per potenziare leadership e gestione team.</p>
-                    
                 </div>
             </div>
         </div>
@@ -548,7 +541,7 @@
         </div>
     </section>
 
-    
+    <!-- SEZIONE COMPETENZE / PROGETTI MANIFESTO (Con scritte fisse) -->
     <section id="portfolio" class="section-padding bg-warm" style="padding-bottom: 0;">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
@@ -620,6 +613,7 @@
         </div>
     </section>
 
+    <!-- FOOTER CORRETTO -->
     <footer id="contatti">
         <div class="container">
             <div class="footer-grid">
@@ -634,9 +628,9 @@
                 <div class="footer-col footer-contact">
                     <h4>Contatti</h4>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Via del Castro Pretorio 30 - 00185 Roma</li>
-                        <li><i class="fas fa-envelope"></i> info@mbstrategy.it</li>
-                        <li><i class="fas fa-phone-alt"></i> +39 3281871509</li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Via del Castro Pretorio 30 - 00185 Roma</span></li>
+                        <li><i class="fas fa-envelope"></i> <span>info@mbstrategy.it</span></li>
+                        <li><i class="fas fa-phone-alt"></i> <span>+39 3281871509</span></li>
                     </ul>
                 </div>
                 <div class="footer-col footer-links">
@@ -649,15 +643,15 @@
                 </div>
             </div>
             <div class="copyright">
-    <p>&copy; 2026 MB Strategy srl | P.IVA 18710031008 | Disegnato e Sviluppato da <a href="http://www.moockup.it"><b>MOOCKUP STUDIO</b></a></p>
-    
-    <div class="footer-socials">
-        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://wa.me/393281871509" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    </div>
-</div>
+                <p>&copy; 2026 MB Strategy srl | P.IVA 18710031008 | Disegnato e Sviluppato da <a href="http://www.moockup.it"><b>MOOCKUP STUDIO</b></a></p>
+                
+                <div class="footer-socials">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://wa.me/393281871509" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -679,51 +673,55 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         /* --- LOGICA CURSORE CUSTOM --- */
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
 
-    // Solo se i cursori esistono (quindi siamo su desktop)
-    if (cursorDot && cursorOutline) {
-        
-        window.addEventListener('mousemove', function(e) {
-            const posX = e.clientX;
-            const posY = e.clientY;
+        if (cursorDot && cursorOutline) {
+            window.addEventListener('mousemove', function(e) {
+                const posX = e.clientX;
+                const posY = e.clientY;
 
-            // Il punto segue il mouse istantaneamente
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
 
-            // Il cerchio esterno segue con un'animazione fluida
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
-
-        // Aggiungi classe 'hovering' quando passi sopra elementi cliccabili
-        // Selezioniamo link, bottoni e le card del portfolio
-        const interactiveElements = document.querySelectorAll('a, button, .btn, .portfolio-item, .service-card');
-
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                document.body.classList.add('hovering');
-                // Opzionale: Nascondi il punto centrale in hover per un effetto più pulito
-                cursorDot.style.opacity = '0'; 
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
             });
-            el.addEventListener('mouseleave', () => {
-                document.body.classList.remove('hovering');
-                cursorDot.style.opacity = '1';
+
+            const interactiveElements = document.querySelectorAll('a, button, .btn, .portfolio-item, .service-card');
+
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    document.body.classList.add('hovering');
+                    cursorDot.style.opacity = '0'; 
+                });
+                el.addEventListener('mouseleave', () => {
+                    document.body.classList.remove('hovering');
+                    cursorDot.style.opacity = '1';
+                });
             });
-        });
-    }
+        }
         
         AOS.init({ duration: 1200, easing: 'cubic-bezier(0.77, 0, 0.175, 1)', once: true, offset: 120, anchorPlacement: 'top-bottom' });
 
+        /* --- LOGICA MENU MOBILE & ICONA X BIANCA --- */
         function toggleMenu() {
             const nav = document.getElementById('navLinks');
             nav.classList.toggle('active');
-            const icon = document.querySelector('.mobile-toggle i');
-            icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times');
+            const icon = document.getElementById('toggleIcon');
+            
+            // Alterna tra l'icona delle barre e la X bianca
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                icon.style.color = '#ffffff'; // Assicura che la X sia bianca
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                icon.style.color = ''; // Ripristina il colore originale in base allo scroll
+            }
         }
 
         window.addEventListener('scroll', function() {
