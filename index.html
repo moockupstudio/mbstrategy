@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>MB STRATEGY | Consulenza e Strategia per il tuo Progetto</title>
+    <meta name="description" content="Affida il tuo business a MB STRATEGY. Offriamo consulenza strategica su misura per far crescere il tuo progetto e raggiungere nuovi obiettivi di business.">
+    <meta name="keywords" content="strategia, advisoring, formazione, comunicazione, terzo settore, casa e territorio, lavoro e sicurezza, sport e management, welfare e inclusione sociale">
+    <meta name="author" content="MB Strategy">
+    
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.mbstrategy.it/">
+    <meta property="og:title" content="MB Strategy - Consulenza e Strategia per il tuo Progetto">
+    <meta property="og:description" content="Consulenza Strategica su misura per far Crescere il tuo Progetto">
+    <meta property="og:image" content="images/og-image.jpg"> <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MB Strategy - Consulenza e Strategia per il tuo Progetto">
+    <meta name="twitter:description" content="strategia, advisoring, formazione, comunicazione, terzo settore, casa e territorio, lavoro e sicurezza, sport e management, welfare e inclusione sociale">
+    <meta name="twitter:image" content="images/og-image.jpg">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 1. PALETTE "ORGANIC LUXURY" --- */
+        :root {
+            --primary: #001a3d; /* Verdone Muschio */
+            --accent: #177aff; /* Verde Fluo */
+            
+            --dark: #1A1A1A;
+            --light-bg: #F5F5F1;
+            --white: #ffffff;
+            --text-body: #555555;
+            
+            --transition-smooth: cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-body);
+            background-color: var(--white);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--dark);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.4s var(--transition-smooth); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        
+        .bg-warm { background-color: var(--light-bg); }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* --- 2. ANIMAZIONE "REVEAL" --- */
+        .reveal-holder {
+            position: relative; overflow: hidden; display: block;
+        }
+        .reveal-holder::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--primary); z-index: 2;
+            transform-origin: left; transition: transform 1.2s var(--transition-smooth);
+        }
+        .reveal-holder.aos-animate::after { transform: scaleX(0); }
+        .reveal-holder img { transition: transform 1.4s var(--transition-smooth); }
+
+        /* Stile Bottoni */
+        .btn {
+            display: inline-block; padding: 18px 42px; font-size: 0.95rem;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; transition: all 0.4s var(--transition-smooth);
+            border-radius: 4px; position: relative; overflow: hidden; z-index: 1;
+        }
+        
+        .btn-primary { background: var(--primary); color: var(--white); border: none; }
+        .btn-primary::before {
+            content: ''; position: absolute; top:0; left:0; width: 0%; height: 100%;
+            background: var(--accent); z-index: -1; transition: 0.4s var(--transition-smooth);
+        }
+        .btn-primary:hover::before { width: 100%; }
+        .btn-primary:hover { transform: translateY(-5px); }
+
+        .btn-outline { border: 2px solid var(--white); color: var(--white); }
+        .btn-outline:hover { background: var(--white); color: var(--primary); transform: translateY(-5px); }
+
+        .section-padding { padding: 140px 0; }
+        
+        .section-title { margin-bottom: 90px; max-width: 700px; }
+        .section-title .sub-heading {
+            display: block; color: var(--accent); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-size: 0.9rem;
+        }
+        .section-title h2 { font-size: 3.2rem; line-height: 1.1; margin-bottom: 25px; }
+
+        /* --- 3. HEADER --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            padding: 25px 0; transition: 0.5s var(--transition-smooth); background: transparent;
+        }
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(15px);
+            padding: 15px 0; box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+        }
+        header.scrolled .nav-links a, header.scrolled .mobile-toggle { color: var(--dark); }
+        header.scrolled .logo-img { filter: brightness(0.2); } 
+        
+        .nav-links a, .mobile-toggle { color: var(--white); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;}
+
+        nav { display: flex; justify-content: space-between; align-items: center; position: relative; }
+        
+        .logo-img {
+            height: 45px; width: auto; display: block; transition: 0.5s;
+            filter: brightness(100) grayscale(1); 
+        }
+
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-links a span { position: relative; z-index: 1; }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent); transition: 0.4s var(--transition-smooth);
+        }
+        .nav-links a:hover::after { width: 100%; }
+        
+        /* Lingua */
+        .lang-link { font-weight: 700 !important; color: var(--accent) !important; }
+
+        .mobile-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: var(--white); transition: 0.3s; }
+
+        /* --- 4. HERO SECTION --- */
+        .hero {
+            height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden;
+        }
+        .hero-bg img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+            animation: subtleZoom 30s infinite alternate linear;
+        }
+        @keyframes subtleZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+        .hero::before {
+            content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+            background: linear-gradient(to right, #001a3d 0%, rgba(47, 17, 235, 0.1) 100%); z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; max-width: 900px; padding-left: 5%; }
+        .hero h1 { font-size: 4.5rem; line-height: 1.05; margin-bottom: 30px; color: var(--white); }
+        .hero p { font-size: 1.3rem; color: rgba(255,255,255,0.85); margin-bottom: 50px; max-width: 650px; }
+        .hero-btns { display: flex; gap: 25px; }
+
+        /* --- 5. MARQUEE --- */
+        .marquee-section {
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 5;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .marquee-content {
+            display: flex; white-space: nowrap;
+            animation: scrollText 30s linear infinite;
+        }
+        .marquee-item {
+            font-size: 1.5rem; font-weight: 700; text-transform: uppercase;
+            padding: 0 40px; display: flex; align-items: center; letter-spacing: 2px; opacity: 0.9;
+        }
+        .marquee-item span { color: var(--accent); margin-left: 40px; font-size: 1.2rem; }
+        @keyframes scrollText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- 6. SEZIONI STANDARD --- */
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .service-card { background: transparent; transition: 0.4s var(--transition-smooth); }
+        .service-img-wrap { height: 300px; width: 100%; border-radius: 4px; margin-bottom: 35px; }
+        .service-img-wrap img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); transition: 1.2s;}
+        .reveal-holder.aos-animate .service-img-wrap img { transform: scale(1); }
+        .service-card h3 { font-size: 1.6rem; margin-bottom: 15px; }
+        .service-link { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; display: inline-flex; align-items: center; margin-top: 25px; }
+
+        .about-wrapper { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 100px; align-items: center; }
+        .about-img-col { position: relative; }
+        .about-img-back { position: absolute; bottom: -40px; left: -40px; width: 70%; height: 80%; background-color: var(--accent); z-index: -1; }
+        .about-img-wrap { height: 650px; border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
+        .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .about-list li { display: flex; align-items: center; margin-bottom: 20px; font-weight: 600; color: var(--dark); }
+        .about-list li i { color: var(--accent); margin-right: 15px; font-size: 1.2rem; }
+
+        /* --- 7. PORTFOLIO --- */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px; }
+        .portfolio-item:nth-child(odd) { height: 500px; margin-top: -50px; }
+        .portfolio-item:nth-child(even) { height: 500px; }
+        .portfolio-item { position: relative; border-radius: 4px; cursor: pointer; }
+        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .portfolio-info {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px;
+            background: linear-gradient(to top, var(--primary) 0%, transparent 100%);
+            color: var(--white); z-index: 3;
+            opacity: 0; transform: translateY(20px); transition: 0.5s var(--transition-smooth);
+        }
+        .portfolio-item:hover .portfolio-info { opacity: 1; transform: translateY(0); }
+        .portfolio-info h3 { color: var(--white); font-size: 1.8rem; margin-bottom: 5px; }
+        .portfolio-info span { color: var(--accent); font-weight: 600; letter-spacing: 1px; text-transform: uppercase;}
+
+        /* --- 8. FOOTER --- */
+        footer { background: #001a3d; color: #ffffff; padding: 120px 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 80px; margin-bottom: 80px; }
+        footer .logo-img { filter: brightness(100) grayscale(1); margin-bottom: 25px; height: 50px; }
+        .footer-col h4 { color: var(--white); margin-bottom: 30px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-contact li { display: flex; gap: 15px; margin-bottom: 20px; align-items: center;}
+        .footer-contact i { color: #177aff; font-size: 1.2rem; }
+        /* --- AGGIORNAMENTO COPYRIGHT E SOCIAL --- */
+
+.copyright {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 30px;
+    margin-top: 40px;
+    display: flex; /* Attiva la modalità riga */
+    justify-content: space-between; /* Testo a Sx, Icone a Dx */
+    align-items: center; /* Allinea verticalmente al centro */
+    font-size: 0.9rem;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 20px; /* Spazio tra le icone */
+}
+
+.footer-socials a {
+    color: #ffffff; /* Icone Bianche */
+    font-size: 1.2rem; /* Grandezza icone */
+    transition: 0.3s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Effetto Hover (diventa color Bronzo/Accent) */
+.footer-socials a:hover {
+    color: var(--accent); 
+    transform: translateY(-3px);
+}
+
+/* --- AGGIORNAMENTO MEDIA QUERY MOBILE (Da inserire/controllare nella sezione @media max-width 768px) --- */
+@media (max-width: 768px) {
+    .copyright {
+        flex-direction: column-reverse; /* Su mobile icone sopra o sotto, come preferisci */
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+        /* --- 9. MODAL POPUP --- */
+        .modal {
+            display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(17, 17, 17, 0.95); backdrop-filter: blur(5px);
+            align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease;
+        }
+        .modal.show { display: flex; opacity: 1; }
+        .modal-content { position: relative; max-width: 90%; max-height: 90vh; display: flex; flex-direction: column; align-items: center; }
+        .modal-image-container { height: 70vh; width: auto; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 2px solid var(--primary); }
+        .modal-image { height: 100%; width: auto; object-fit: contain; display: block; animation: fadeImage 0.5s; }
+        @keyframes fadeImage { from { opacity: 0; } to { opacity: 1; } }
+        .modal-close { position: absolute; top: 30px; right: 30px; color: white; font-size: 40px; cursor: pointer; z-index: 10; }
+        .modal-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            color: white; font-size: 2rem; cursor: pointer; padding: 20px;
+            background: rgba(255,255,255,0.1); border-radius: 50%; transition: 0.3s; z-index: 10;
+        }
+        .modal-nav:hover { color: var(--dark); }
+        .prev { left: -80px; } .next { right: -80px; }
+        .modal-info { text-align: center; margin-top: 20px; color: white; }
+        .modal-info h3 { color: var(--white); font-size: 1.8rem; margin-bottom: 5px; }
+        .modal-info p { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- RESPONSIVE OTTIMIZZATO --- */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3.5rem; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-wrapper { grid-template-columns: 1fr; gap: 60px; }
+            .about-img-wrap { height: 450px; }
+            .portfolio-grid { grid-template-columns: 1fr; gap: 30px; }
+            .portfolio-item:nth-child(odd) { margin-top: 0; } 
+            .footer-grid { grid-template-columns: 1fr; gap: 50px; }
+        }
+
+        @media (max-width: 768px) {
+            .section-padding { padding: 80px 0; }
+            
+            .mobile-toggle { display: block; }
+            .logo-img { height: 35px; }
+            
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+                background: var(--primary); 
+                flex-direction: column; justify-content: center; align-items: center;
+                transition: 0.5s var(--transition-smooth); gap: 30px; padding-top: 60px;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.5rem; }
+            
+            .hero { text-align: center; flex-direction: column; padding-top: 120px; }
+            .hero-content { padding: 0 20px; max-width: 100%; }
+            .hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
+            .hero-btns { flex-direction: column; gap: 15px; }
+            .btn { width: 100%; text-align: center; }
+            
+            .services-grid { grid-template-columns: 1fr; }
+            .mobile-hidden { display: none; }
+            
+            .modal-image-container { height: 50vh; width: 100%; }
+            .prev, .next { top: auto; bottom: -60px; transform: none; }
+            .prev { left: 20px; } .next { right: 20px; }
+        }
+        /* --- CURSORE CUSTOM (Solo Desktop) --- */
+@media (min-width: 992px) {
+    
+    /* Nasconde il cursore di default */
+    * {
+        cursor: none !important; 
+    }
+
+    .cursor-dot {
+        position: fixed;
+        top: 0; left: 0;
+        width: 8px; height: 8px;
+        background-color: var(--accent); /* Usa il color Oro/Khaki */
+        border-radius: 50%;
+        z-index: 9999;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+    }
+
+    .cursor-outline {
+        position: fixed;
+        top: 0; left: 0;
+        width: 40px; height: 40px;
+        border: 1px solid var(--primary); /* Usa il color Verdone */
+        border-radius: 50%;
+        z-index: 9998; /* Appena sotto il punto */
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s, height 0.2s, background-color 0.2s; /* Animazione fluida espansione */
+    }
+
+    /* Effetto quando passi sopra link o bottoni */
+    body.hovering .cursor-outline {
+        width: 70px;
+        height: 70px;
+        background-color: rgba(189, 183, 107, 0.1); /* darkkhaki trasparente */
+        border-color: var(--accent);
+    }
+}
+
+/* Nascondi i div del cursore su Mobile */
+@media (max-width: 991px) {
+    .cursor-dot, .cursor-outline { display: none; }
+}
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">
+                    <img src="images/logo-white.png" alt="MB Strategy" class="logo-img">
+                </a>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" onclick="toggleMenu()"><span>Home</span></a></li>
+                    <li><a href="#intro" onclick="toggleMenu()"><span>Chi Siamo</span></a></li>
+                    <li><a href="#services" onclick="toggleMenu()"><span>Aree di Intervento</span></a></li>
+                    <li><a href="#about" onclick="toggleMenu()"><span>Filosofia</span></a></li>
+                    <li><a href="#portfolio" onclick="toggleMenu()"><span>Competenze</span></a></li>
+                </ul>
+                
+                <a href="#contatti" class="btn btn-primary mobile-hidden" style="padding: 12px 30px; font-size: 0.85rem;">Contattaci</a>
+
+                <div class="mobile-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <img src="images/bg.jpg" alt="Modern Luxury Architecture">
+        </div>
+        <div class="hero-content">
+            <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                Consulenza e Strategia <br> che genera valore.
+            </h1>
+            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                MB Strategy combina visione strategica e metodo per assicurare successo al tuo business. Dalla fase di Startup alla fase di Scaleup!
+            </p>
+            <div class="hero-btns" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                <a href="#services" class="btn btn-primary">Chi Siamo</a>
+                <a href="#portfolio" class="btn btn-outline">Cosa Facciamo</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="marquee-section">
+        <div class="marquee-content">
+            <div class="marquee-item">
+                CONSULTING <span>*</span> MANAGEMENT <span>*</span> STRATEGY <span>*</span> ADVISORING <span>*</span> FORMAZIONE <span>*</span> MB STRATEGY <span>*</span> TERZO SETTORE <span>*</span>
+            </div>
+            <div class="marquee-item">
+                WELFARE <span>*</span> SPORT <span>*</span> TERZO SETTORE <span>*</span> CASA E TERRITORIO <span>*</span> FORMAZIONE <span>*</span>   LAVORO E SICUREZZA <span>*</span>  MB STRATEGY <span>*</span> TERZO SETTORE <span>*</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="intro" class="section-padding">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-text" data-aos="fade-right" data-aos-duration="1200">
+                    <div class="section-title" style="margin-bottom: 30px;">
+                        <span class="sub-heading">Chi Siamo</span>
+                        <h2>La Forza del Gruppo.</h2>
+                    </div>
+                    <p style="margin-bottom: 20px; font-size: 1.1rem;">
+                        MB Strategy rappresenta, da sempre, un punto di riferimento nella consulenza, pianificazione e programmazione strategica e manageriale. Uniamo il valore professionale ai metodi di attuazione di progetti aziendali, di gruppi, di associazioni e di organizzazioni anche no profit attraverso l'intervento di un team di professionisti di alto valore ognuno dedicato a ciascuna area di interesse.
+                    </p>
+                    <p style="margin-bottom: 30px; font-size: 1.1rem;">
+                        Il nostro team multidisciplinare gestisce ogni fase: dall'analisi del caso fino alla completa realizzazione del progetto mediante condivisione e sostegno dei vari step valorizzando le tue risorse professionali e umane. Facilitiamo percorsi e processi di crescita degli standard del tuo core business.
+                    </p>
+                    <a href="#services" class="btn btn-outline" style="border-color: var(--dark); color: var(--dark);">Le Aree di Competenza</a>
+                </div>
+                <div class="about-img-col" data-aos="fade-left" data-aos-duration="1200">
+                    <div class="about-img-back"></div> 
+                    <div class="about-img-wrap reveal-holder" data-aos="reveal-trigger">
+                        <img src="images/team.jpg" alt="MB Strategy Team">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding bg-warm">
+        <div class="container">
+            <div class="section-title" data-aos="fade-right">
+                <span class="sub-heading">Aree di intervento</span>
+                <h2>L'approccio integrato MB Strategy.</h2>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-img-wrap reveal-holder" data-aos="reveal-trigger">
+                        <img src="https://images.pexels.com/photos/17408384/pexels-photo-17408384.jpeg" alt="Welfare & Inclusione Sociale">
+                    </div>
+                    <h3>Welfare & Inclusione Sociale</h3>
+                    <p>Iniziative per l'accessibilità, il sostegno alla disabilità e la tutela dei diritti dei cittadini.</p>
+                    
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-img-wrap reveal-holder" data-aos="reveal-trigger">
+                        <img src="https://images.pexels.com/photos/8941652/pexels-photo-8941652.jpeg" alt="Sport & Management">
+                    </div>
+                    <h3>Sport & Management</h3>
+                    <p>Promozione e valorizzazione sportiva giovanile e sviluppo infrastrutturale.</p>
+                    
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-img-wrap reveal-holder" data-aos="reveal-trigger">
+                        <img src="https://images.pexels.com/photos/585418/pexels-photo-585418.jpeg" alt="Lavoro & Sicurezza">
+                    </div>
+                    <h3>Lavoro & Sicurezza</h3>
+                    <p>Advisor e governance per la compliance aziendale e la sicurezza nei luoghi di lavoro.</p>
+                    
+                </div>
+                                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-img-wrap reveal-holder" data-aos="reveal-trigger">
+                        <img src="https://images.pexels.com/photos/27075286/pexels-photo-27075286.jpeg" alt="Casa & Territorio">
+                    </div>
+                    <h3>Casa & Territorio</h3>
+                    <p>Governance cooperativa e politiche abitative per costruire comunità di cittadini.</p>
+                    
+                </div>
+                                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-img-wrap reveal-holder" data-aos="reveal-trigger">
+                        <img src="https://images.pexels.com/photos/461049/pexels-photo-461049.jpeg" alt="Terzo Settore">
+                    </div>
+                    <h3>Terzo Settore</h3>
+                    <p>Co-progettazione sociale e direzione strategica per lo sviluppo territoriale.</p>
+                    
+                </div>
+                                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-img-wrap reveal-holder" data-aos="reveal-trigger">
+                        <img src="https://images.pexels.com/photos/7698719/pexels-photo-7698719.jpeg" alt="Formazione & Comunicazione">
+                    </div>
+                    <h3>Formazione & Comunicazione</h3>
+                    <p>Percorsi di sviluppo personale per potenziare leadership e gestione team.</p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-img-col" data-aos="fade-right" data-aos-duration="1200">
+                    <div class="about-img-back"></div> 
+                    <div class="about-img-wrap reveal-holder" data-aos="reveal-trigger">
+                        <img src="images/filosofia.jpg" alt="MB Strategy Vision">
+                    </div>
+                </div>
+                <div class="about-text" data-aos="fade-left" data-aos-delay="300">
+                    <div class="section-title" style="margin-bottom: 40px;">
+                        <span class="sub-heading">La nostra filosofia</span>
+                        <h2>Oltre l’idea: diamo concretezza al futuro.</h2>
+                    </div>
+                    <p style="margin-bottom: 30px; font-size: 1.1rem;">
+                        MB Strategy trasforma le complessità in opportunità, strutturando progetti, persone e reti per dare concretezza al futuro di imprese e no-profit.
+                    </p>
+                    <ul class="about-list">
+                        <li><i class="fas fa-check-circle"></i> Non ci limitiamo a diagnosticare il problema, ma architettiamo la soluzione rimodellando la struttura organizzativa esistente per renderla efficiente</li>
+                        <li><i class="fas fa-check-circle"></i> Consideriamo le persone il vero motore dei progetti: la crescita aziendale e di gruppo passa inevitabilmente attraverso la valorizzazione e la formazione delle competenze inespresse dei dirigenti, addetti ai lavori e operatori</li>
+                        <li><i class="fas fa-check-circle"></i> Superiamo la logica dell'isolamento creando connessioni strategiche tra soggetti diversi, trasformando relazioni frammentate in una comunità agile, funzionale e orientata al risultato</li>
+                        <li><i class="fas fa-check-circle"></i> Facciamo da ponte tra la teoria strategica e la realtà operativa, accompagnando il cliente passo dopo passo lungo tutte le tappe del percorso progettuale</li>
+                    </ul>
+                    <a href="#contatti" class="btn btn-primary" style="margin-top: 20px;">La nostra visione</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="portfolio" class="section-padding bg-warm" style="padding-bottom: 0;">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                 <span class="sub-heading">Competenze</span>
+                <h2>Progetti manifesto.</h2>
+            </div>
+
+            <div class="portfolio-grid" style="padding-bottom: 150px;">
+                <div class="portfolio-item reveal-holder" data-aos="reveal-trigger">
+                    <img src="https://images.pexels.com/photos/8941577/pexels-photo-8941577.jpeg" alt="Sport & Management">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-info">
+                        <span>Sport & Management</span>
+                        <h4 style="color:#fff">SSD CAPITANATA SPORT: Sviluppare i vivai delle varie discipline sportive scoprendo talenti e promuovendo valori quali rispetto, fair play, impegno e teamwork (VIVAIO DI CAPITANATA)</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal-holder" data-aos="reveal-trigger" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1585938541980-db734b99b264?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Welfare & Inclusione Sociale">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-info">
+                        <span>Welfare & Inclusione Sociale</span>
+                        <h4 style="color:#fff">APS OKKUPIAMOCI: Sviluppo di politiche, misure concrete e progetti di supporto integrato per l'inclusione e la tutela della disabilità</h4>
+                    </div>
+                </div>
+                 <div class="portfolio-item reveal-holder" data-aos="reveal-trigger">
+                    <img src="https://images.pexels.com/photos/8960987/pexels-photo-8960987.jpeg" alt="Lavoro & Sicurezza">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-info">
+                        <span>Lavoro & Sicurezza</span>
+                        <h4 style="color:#fff">Magistra Group: Advisory e strategie d'impresa focalizzate su salute e sicurezza sul lavoro (D.Lgs. 81/08), formazione aziendale e consulenza giuslavoristica d'alto profilo</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal-holder" data-aos="reveal-trigger" data-aos-delay="200">
+                    <img src="https://images.pexels.com/photos/14493179/pexels-photo-14493179.jpeg" alt="Casa & Territorio">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-info">
+                        <span>Casa & Territorio</span>
+                        <h4 style="color:#fff">AICOOP (Associazione Italiana Cooperative e Mutue): Iniziative urbanistiche con focus sul rilancio dell'edilizia cooperativa, abitare sostenibile e rigenerazione urbana</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal-holder" data-aos="reveal-trigger" data-aos-delay="200">
+                    <img src="https://images.pexels.com/photos/6764783/pexels-photo-6764783.jpeg" alt="Terzo Settore">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-info">
+                        <span>Terzo Settore</span>
+                        <h4 style="color:#fff">Fondazione La Capitanata per lo Sport ETS: utilizzare lo sport come strumento di rigenerazione e inclusione interetnica (PROGETTO GARRINCHA) e realizzare hub educatico-sportivo con riqualificazione di impianti sportivi (CAPITANATA CAMPUS)</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal-holder" data-aos="reveal-trigger" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1758691736722-cda1858056e0?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Formazione & Comunicazione">
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-info">
+                        <span>Formazione & Comunicazione</span>
+                        <h4 style="color:#fff">FACTORY FUTURO: la forza della formazione per ispirare confronto e favorire comunicazione tra talenti e comunità. Eventi esclusivi con relatori, imprenditori, professionisti e leader</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section class="marquee-section">
+        <div class="marquee-content">
+             <div class="marquee-item">
+                CONSULTING <span>*</span> MANAGEMENT <span>*</span> STRATEGY <span>*</span> ADVISORING <span>*</span> FORMAZIONE <span>*</span> MB STRATEGY <span>*</span>
+            </div>
+            <div class="marquee-item">
+                WELFARE <span>*</span> SPORT <span>*</span> TERZO SETTORE <span>*</span> CASA E TERRITORIO <span>*</span> FORMAZIONE <span>*</span>   LAVORO E SICUREZZA <span>*</span>  MB STRATEGY <span>*</span>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contatti">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#home" class="logo">
+                        <img src="images/logo-white.png" alt="MB Strategy" class="logo-img">
+                    </a>
+                    <p style="opacity: 0.8;">
+                        Punto di riferimento nella consulenza, pianificazione e programmazione strategica e manageriale. Creiamo valore che dura nel tempo.
+                    </p>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h4>Contatti</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Via del Castro Pretorio 30 - 00185 Roma</li>
+                        <li><i class="fas fa-envelope"></i> info@mbstrategy.it</li>
+                        <li><i class="fas fa-phone-alt"></i> +39 3281871509</li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-links">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Aree di Intervento</a></li>
+                        <li><a href="#portfolio">Competenze</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+    <p>&copy; 2026 MB Strategy srl | P.IVA 18710031008 | Disegnato e Sviluppato da <a href="http://www.moockup.it"><b>MOOCKUP STUDIO</b></a></p>
+    
+    <div class="footer-socials">
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/393281871509" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+</div>
+        </div>
+    </footer>
+
+    <div id="projectModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <div class="modal-nav prev" onclick="changeSlide(-1)">&#10094;</div>
+            <div class="modal-nav next" onclick="changeSlide(1)">&#10095;</div>
+            <div class="modal-image-container">
+                <img id="modalImage" src="" alt="Progetto" class="modal-image">
+            </div>
+            <div class="modal-info">
+                <h3 id="modalTitle">Titolo Progetto</h3>
+                <p id="modalCategory">Categoria</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        /* --- LOGICA CURSORE CUSTOM --- */
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+
+    // Solo se i cursori esistono (quindi siamo su desktop)
+    if (cursorDot && cursorOutline) {
+        
+        window.addEventListener('mousemove', function(e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Il punto segue il mouse istantaneamente
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Il cerchio esterno segue con un'animazione fluida
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Aggiungi classe 'hovering' quando passi sopra elementi cliccabili
+        // Selezioniamo link, bottoni e le card del portfolio
+        const interactiveElements = document.querySelectorAll('a, button, .btn, .portfolio-item, .service-card');
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('hovering');
+                // Opzionale: Nascondi il punto centrale in hover per un effetto più pulito
+                cursorDot.style.opacity = '0'; 
+            });
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('hovering');
+                cursorDot.style.opacity = '1';
+            });
+        });
+    }
+        
+        AOS.init({ duration: 1200, easing: 'cubic-bezier(0.77, 0, 0.175, 1)', once: true, offset: 120, anchorPlacement: 'top-bottom' });
+
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+            const icon = document.querySelector('.mobile-toggle i');
+            icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times');
+        }
+
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) { header.classList.add('scrolled'); } 
+            else { header.classList.remove('scrolled'); }
+        });
+
+        // LOGICA GALLERIA FOTOGRAFICA
+        const projectsData = {
+            1: { title: "Residenza Orizzonte Lago", category: "Residenziale", images: ["https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200", "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200"] },
+            2: { title: "Attico Brera, Milano", category: "Interior Design", images: ["https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200", "https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?w=1200"] },
+            3: { title: "Eco-Campus Tecnologico", category: "Energia & Sviluppo", images: ["https://images.unsplash.com/photo-1524230572899-a752b3835840?w=1200", "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200"] },
+            4: { title: "Private Villa Interior", category: "Interior Design", images: ["https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200", "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200"] }
+        };
+
+        let currentProjectImages = [];
+        let currentImageIndex = 0;
+
+        function openModal(projectId) {
+            const project = projectsData[projectId];
+            if(!project) return;
+            currentProjectImages = project.images;
+            currentImageIndex = 0;
+            document.getElementById('modalTitle').innerText = project.title;
+            document.getElementById('modalCategory').innerText = project.category;
+            updateSlide();
+            const modal = document.getElementById('projectModal');
+            modal.style.display = "flex";
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = "none", 400);
+        }
+
+        function changeSlide(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex >= currentProjectImages.length) currentImageIndex = 0;
+            else if (currentImageIndex < 0) currentImageIndex = currentProjectImages.length - 1;
+            updateSlide();
+        }
+
+        function updateSlide() {
+            const imgElement = document.getElementById('modalImage');
+            imgElement.style.animation = 'none';
+            imgElement.offsetHeight; 
+            imgElement.style.animation = null; 
+            imgElement.src = currentProjectImages[currentImageIndex];
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target == modal) closeModal();
+        }
+    </script>
+</body>
+</html>
